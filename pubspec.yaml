@@ -10,6 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  xb_scaffold: ^1.0.0
+  archive: ^3.6.1
+  path_provider: ^2.1.5
+  path: ^1.9.1
+  share_plus: ^12.0.2
+
 
 dev_dependencies:
   flutter_test:
