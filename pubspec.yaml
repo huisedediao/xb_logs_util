@@ -12,17 +12,17 @@ dependencies:
     sdk: flutter
   xb_scaffold: ^1.0.0
   archive: ^3.6.1
-  path: 1.9.0
-  share_plus: 
-    git:
-      url: https://gitcode.com/openharmony-sig/flutter_plus_plugins.git
-      path: packages/share_plus/share_plus
 
 dependency_overrides: 
   path_provider:
     git:
       url: https://gitcode.com/openharmony-sig/flutter_packages.git
       path: packages/path_provider/path_provider
+  path: 1.9.0
+  share_plus: 
+    git:
+      url: https://gitcode.com/openharmony-sig/flutter_plus_plugins.git
+      path: packages/share_plus/share_plus
 
 dev_dependencies:
   flutter_test:
