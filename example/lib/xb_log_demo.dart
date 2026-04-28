@@ -26,7 +26,7 @@ class XbLogDemo extends XBPage<XbLogDemoVM> {
     return [
       XBButton(
         onTap: () {
-          push(XBLogsOperaPage());
+          push(XBLogsOperaPage(folderName: XbLogDemoVM.demoFolderName));
         },
         coverTransparentWhileOpacity: true,
         child: Padding(

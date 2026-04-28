@@ -6,11 +6,16 @@ import 'package:xb_logs_util/xb_logs_util.dart';
 import 'package:xb_scaffold/xb_scaffold.dart';
 
 class XBLogsOperaPage extends XBPage<XBLogsOperaPageVM> {
-  const XBLogsOperaPage({super.key});
+  final String folderName;
+
+  const XBLogsOperaPage({super.key, this.folderName = 'xbLogs'});
 
   @override
   generateVM(BuildContext context) {
-    return XBLogsOperaPageVM(context: context);
+    return XBLogsOperaPageVM(
+      context: context,
+      folderName: folderName,
+    );
   }
 
   @override
@@ -142,7 +147,9 @@ class XBLogsOperaPage extends XBPage<XBLogsOperaPageVM> {
 }
 
 class XBLogsOperaPageVM extends XBPageVM<XBLogsOperaPage> {
-  XBLogsOperaPageVM({required super.context}) {
+  final String folderName;
+
+  XBLogsOperaPageVM({required super.context, this.folderName = 'xbLogs'}) {
     _query();
   }
 
@@ -152,11 +159,17 @@ class XBLogsOperaPageVM extends XBPageVM<XBLogsOperaPage> {
   _query() async {
     selectedIndex.clear();
     if (byMonth) {
-      final groupedLogs = await XBLogsUtil.getLogsByMonth(monthStr);
+      final groupedLogs = await XBLogsUtil.getLogsByMonth(
+        monthStr,
+        folderName: folderName,
+      );
       logs = groupedLogs.values.expand((element) => element).toList()
         ..sort((a, b) => b.modifiedAt.compareTo(a.modifiedAt));
     } else {
-      logs = await XBLogsUtil.getLogsByDate(dateTimeStr);
+      logs = await XBLogsUtil.getLogsByDate(
+        dateTimeStr,
+        folderName: folderName,
+      );
     }
     notify();
   }
@@ -275,11 +288,11 @@ class XBLogsOperaPageVM extends XBPageVM<XBLogsOperaPage> {
                       itemCount: 12,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            mainAxisSpacing: 8,
-                            crossAxisSpacing: 8,
-                            childAspectRatio: 2.2,
-                          ),
+                        crossAxisCount: 4,
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 8,
+                        childAspectRatio: 2.2,
+                      ),
                       itemBuilder: (context, index) {
                         final month = index + 1;
                         final selected = selectedMonth == month;

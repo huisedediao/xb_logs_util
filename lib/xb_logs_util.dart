@@ -316,8 +316,10 @@ class XBLogsUtil {
         name: p.basename(zipPath),
       );
 
-      await SharePlus.instance.share(
-        ShareParams(files: [xFile], text: text, subject: subject),
+      await Share.shareXFiles(
+        [xFile],
+        text: text,
+        subject: subject,
       );
 
       return true;
@@ -469,9 +471,8 @@ class XBLogsUtil {
 
     final splitIndex = archiveName.lastIndexOf('/');
     final dir = splitIndex >= 0 ? archiveName.substring(0, splitIndex) : '';
-    final rawName = splitIndex >= 0
-        ? archiveName.substring(splitIndex + 1)
-        : archiveName;
+    final rawName =
+        splitIndex >= 0 ? archiveName.substring(splitIndex + 1) : archiveName;
     final ext = p.extension(rawName);
     final base = ext.isEmpty
         ? rawName
