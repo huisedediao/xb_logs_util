@@ -19,12 +19,13 @@ class XBLogsOperaPage extends XBPage<XBLogsOperaPageVM> {
   }
 
   @override
-  String setTitle(XBLogsOperaPageVM vm) {
+  String setTitle(BuildContext context) {
     return "日志";
   }
 
   @override
-  List<Widget>? actions(XBLogsOperaPageVM vm) {
+  List<Widget>? actions(BuildContext context) {
+    final vm = vmOf(context);
     return [
       XBButton(
         onTap: () async {
@@ -53,7 +54,8 @@ class XBLogsOperaPage extends XBPage<XBLogsOperaPageVM> {
   }
 
   @override
-  Widget buildPage(XBLogsOperaPageVM vm, BuildContext context) {
+  Widget buildPage(BuildContext context) {
+    final vm = vmOf(context);
     return Column(
       children: [
         Container(
@@ -414,7 +416,8 @@ class ViewLogDialog extends XBWidget<ViewLogDialogVM> {
   }
 
   @override
-  Widget buildWidget(ViewLogDialogVM vm, BuildContext context) {
+  Widget buildWidget(BuildContext context) {
+    final vm = vmOf(context);
     final maxHeight = MediaQuery.of(context).size.height * 0.75;
     return Padding(
       padding: EdgeInsets.only(left: spaces.gapDef, right: spaces.gapDef),
@@ -456,7 +459,7 @@ class ViewLogDialog extends XBWidget<ViewLogDialogVM> {
                         ),
                         XBButton(
                           onTap: () {
-                            pop();
+                            Navigator.of(context).pop();
                           },
                           child: SizedBox(
                             width: 64,

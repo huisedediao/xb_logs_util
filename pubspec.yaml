@@ -1,6 +1,6 @@
 name: xb_logs_util
 description: "flutter 写日志到本地、查本地日志、分享本地日志"
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/huisedediao/xb_logs_util.git
 
 environment:
@@ -10,19 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  xb_scaffold: ^1.0.0
+  xb_scaffold: ^1.0.4
   archive: ^3.6.1
-  path: 1.9.0
-  share_plus: 
-    git:
-      url: https://gitcode.com/openharmony-sig/flutter_plus_plugins.git
-      path: packages/share_plus/share_plus
-
-dependency_overrides: 
-  path_provider:
-    git:
-      url: https://gitcode.com/openharmony-sig/flutter_packages.git
-      path: packages/path_provider/path_provider
+  path: 1.9.1
+  share_plus: 10.1.2
+  path_provider: 2.1.4
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,7 @@ import 'package:example/xb_log_demo_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:xb_logs_util/xb_logs_util.dart';
 import 'package:xb_scaffold/xb_scaffold.dart';
+import 'package:xb_simple_router/xb_simple_router.dart';
 
 class XbLogDemo extends XBPage<XbLogDemoVM> {
   const XbLogDemo({super.key});
@@ -12,21 +13,26 @@ class XbLogDemo extends XBPage<XbLogDemoVM> {
   }
 
   @override
-  Widget? leading(XbLogDemoVM vm) {
+  Widget? leading(BuildContext context) {
     return null;
   }
 
   @override
-  String setTitle(XbLogDemoVM vm) {
+  String setTitle(BuildContext context) {
     return 'XBLogsUtil Demo';
   }
 
   @override
-  List<Widget>? actions(XbLogDemoVM vm) {
+  List<Widget>? actions(BuildContext context) {
     return [
       XBButton(
         onTap: () {
           push(XBLogsOperaPage(folderName: XbLogDemoVM.demoFolderName));
+          dialog(
+              title: "title",
+              msg: "msg",
+              btnTitles: ["ok"],
+              onSelected: (i) {});
         },
         coverTransparentWhileOpacity: true,
         child: Padding(
@@ -38,22 +44,23 @@ class XbLogDemo extends XBPage<XbLogDemoVM> {
   }
 
   @override
-  Widget buildPage(XbLogDemoVM vm, BuildContext context) {
+  Widget buildPage(BuildContext context) {
     return ListView(
       padding: EdgeInsets.all(spaces.gapDef),
       children: [
-        _buildIntroCard(vm),
+        _buildIntroCard(context),
         const SizedBox(height: 12),
-        _buildActionCard(vm),
+        _buildActionCard(context),
         const SizedBox(height: 12),
-        _buildStatusCard(vm),
+        _buildStatusCard(context),
         const SizedBox(height: 12),
-        _buildLogsCard(vm),
+        _buildLogsCard(context),
       ],
     );
   }
 
-  Widget _buildIntroCard(XbLogDemoVM vm) {
+  Widget _buildIntroCard(BuildContext context) {
+    final vm = vmOf(context);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -74,7 +81,8 @@ class XbLogDemo extends XBPage<XbLogDemoVM> {
     );
   }
 
-  Widget _buildActionCard(XbLogDemoVM vm) {
+  Widget _buildActionCard(BuildContext context) {
+    final vm = vmOf(context);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -108,7 +116,8 @@ class XbLogDemo extends XBPage<XbLogDemoVM> {
     );
   }
 
-  Widget _buildStatusCard(XbLogDemoVM vm) {
+  Widget _buildStatusCard(BuildContext context) {
+    final vm = vmOf(context);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -129,7 +138,8 @@ class XbLogDemo extends XBPage<XbLogDemoVM> {
     );
   }
 
-  Widget _buildLogsCard(XbLogDemoVM vm) {
+  Widget _buildLogsCard(BuildContext context) {
+    final vm = vmOf(context);
     if (vm.logsByDate.isEmpty) {
       return const Card(
         child: Padding(

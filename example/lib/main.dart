@@ -1,6 +1,7 @@
 import 'package:example/xb_log_demo.dart';
 import 'package:flutter/material.dart';
 import 'package:xb_scaffold/xb_scaffold.dart';
+import 'package:xb_simple_router/xb_simple_router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: xbSimpleNavigatorKey,
       title: 'Flutter Demo',
+      navigatorObservers: [
+        xbSimpleNavigatorObserver,
+        xbSimpleRouteObserver,
+        xbRouteObserver
+      ],
       theme: ThemeData(
         // This is the theme of your application.
         //
